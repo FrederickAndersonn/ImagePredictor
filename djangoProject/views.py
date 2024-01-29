@@ -94,7 +94,7 @@ def predict(request):
         # Convert the results to human-readable format
         gender_label = 'Male' if gender[0][0] > 0.5 else 'Female'
         race_label = ['White', 'Black', 'Asian', 'Indian', 'Others'][np.argmax(race)]
-        result = {'age': int(age[0][0] * 75), 'gender': gender_label, 'race': race_label}
+        result = {'age': int(age[0][0] * 65), 'gender': gender_label, 'race': race_label}
 
         return render(request, 'home.html', {'result': result})
     else:
