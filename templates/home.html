@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url('{% if result.gender == 'Male' %}https://wallpaperaccess.com/full/2014244.png{% elif result.gender == 'Female' %}https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fbf0db55-8065-4914-bea1-48fb1d5e1903/dejhaso-12b30f07-0d5e-49d3-a11d-41e961bb3027.png/v1/fit/w_375,h_302,q_70,strp/ee_qna_212_by_pkn_133_dejhaso-375w.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAzMSIsInBhdGgiOiJcL2ZcL2ZiZjBkYjU1LTgwNjUtNDkxNC1iZWExLTQ4ZmIxZDVlMTkwM1wvZGVqaGFzby0xMmIzMGYwNy0wZDVlLTQ5ZDMtYTExZC00MWU5NjFiYjMwMjcucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.VW9PH4wTJ15X0ei2mtWr6ZhsU4vQRmsUWIljqza4p6s{% else %}https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkHUE--faNAVMEDLOA9iJArlcPVnQ3wqaPIQ&usqp=CAU{% endif %}');
+            background-size: 100% 100%;
+        }
+        h1 {
+            color: rgb(255, 255, 255);
+        }
+        .description {
+            max-width: 600px;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 20px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Stock Prediction Platform</h1>
+    <div class="description">
+        <p>
+            This webpage offers AI-driven predictions for future stock prices of two major companies: Apple and Amazon.
+            By leveraging advanced machine learning models, it provides insights into the potential future performance of these stocks.
+            Choose a company below to view its stock price predictions for the next 7 days.
+        </p>
+        <form method="post" action="{% url 'predict' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">Upload an image:</label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+        <button type="submit" class="button">Predict</button>
+    </form>
+    </div>
+    <a href="{% url 'index2' %}" class="button">Apple Stock Prediction</a>
+    <a href="{% url 'index1' %}" class="button">Amazon Stock Prediction</a>
+</body>
+</html>
