@@ -1,0 +1,4 @@
+Django==3.2.10
+numpy==1.21.2
+Keras==2.6.0
+matplotlib==3.4.3

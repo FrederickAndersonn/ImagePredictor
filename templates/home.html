@@ -15,20 +15,9 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: url('{% if result.gender == 'Male' %}https://wallpaperaccess.com/full/2014244.png {% elif result.gender == 'Female' %}https://readsludge.com/content/images/size/w2000/2021/08/stonkpelosi.png {% else %}https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkHUE--faNAVMEDLOA9iJArlcPVnQ3wqaPIQ&usqp=CAU{% endif %}');
-            background-size: 100% 100%;
+            background: aliceblue;
         }
-        h1 {
-            color: rgb(255, 255, 255);
-        }
-        .description {
-            max-width: 600px;
-            margin: 20px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+
         p {
             color: #333;
             line-height: 1.6;
@@ -52,21 +41,16 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to the Stock Prediction Platform</h1>
-    <div class="description">
-        <p>
-            This webpage offers AI-driven predictions for future stock prices of two major companies: Apple and Amazon.
-            By leveraging advanced machine learning models, it provides insights into the potential future performance of these stocks.
-            Choose a company below to view its stock price predictions for the next 7 days.
-        </p>
+        <h1>Image Predictor</h1>
         <form method="post" action="{% url 'predict' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="image">Upload an image:</label>
         <input type="file" name="image" id="image" accept="image/*" required>
         <button type="submit" class="button">Predict</button>
     </form>
-    </div>
-    <a href="{% url 'index2' %}" class="button">Apple Stock Prediction</a>
-    <a href="{% url 'index1' %}" class="button">Amazon Stock Prediction</a>
+        <div>
+            <h1>Prediction Result</h1>
+            <p>{{ result }}</p>
+        </div>
 </body>
 </html>
